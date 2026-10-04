@@ -19,4 +19,9 @@ if not html_path.exists():
     st.error("build/index.html not found. Run `npm install && npm run build` and commit the build folder.")
     st.stop()
 
-components.html(html_path.read_text(encoding="utf-8"), height=950, scrolling=True)
+html = html_path.read_text(encoding="utf-8")
+
+if hasattr(st, "iframe"):
+    st.iframe(html, height=950)
+else:
+    components.html(html, height=950, scrolling=True)
